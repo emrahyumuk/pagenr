@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const routes = require('./src/routes');
+const appConfig = require('./src/config');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
@@ -21,6 +22,19 @@ function readFiles(dir, processFiles) {
   });
 }
 
+function templateParametersGenerator(compilation, assets, options) {
+  return {
+    compilation: compilation,
+    webpack: compilation.getStats().toJson(),
+    webpackConfig: compilation.options,
+    htmlWebpackPlugin: {
+      files: assets,
+      options: options,
+    },
+    app: appConfig,
+  };
+}
+
 const pageContents = {};
 readFiles('./src/views', ({ name, contents }) => (pageContents[name] = contents));
 
@@ -37,6 +51,7 @@ const generatePage = ({
     htmlContents,
     inject: false,
     hash: true,
+    templateParameters: templateParametersGenerator,
   });
 
 const routesConfigs = routes.map(route =>

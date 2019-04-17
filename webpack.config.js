@@ -45,11 +45,21 @@ module.exports = (env, options) => {
           from: './src/assets',
           to: './assets',
         },
+        {
+          from: './src/robots.txt',
+          to: './',
+        },
       ]),
       // new CompressionPlugin({
       //   algorithm: 'gzip',
       // }),
     ],
+    devServer: {
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true,
+      port: 9000,
+      writeToDisk: true,
+    },
     module: {
       rules: [
         {
