@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 const routeConfigs = require('./webpack.routeConfigs');
@@ -40,16 +39,6 @@ module.exports = (env, options) => {
         filename: isDevMode ? 'assets/css/[name].css' : 'assets/css/[name].[contenthash].css',
       }),
       ...routeConfigs,
-      new CopyWebpackPlugin([
-        {
-          from: './src/assets',
-          to: './assets',
-        },
-        {
-          from: './src/robots.txt',
-          to: './',
-        },
-      ]),
       // new CompressionPlugin({
       //   algorithm: 'gzip',
       // }),
