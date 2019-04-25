@@ -9,14 +9,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const isDevelopment = process.env.NODE_ENV !== 'production';
+const helpers = require('./webpack.helpers');
 
-function readLocales(dir) {
-  fs.readdirSync(dir).forEach(filename => {
-    const name = path.parse(filename).name;
-    locales[name] = require(path.resolve(dir, filename));
-  });
-}
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
 function readFiles(dir, processFiles) {
   fs.readdirSync(dir).forEach(filename => {
@@ -54,8 +49,7 @@ function templateParametersGenerator(compilation, assets, options) {
   };
 }
 
-const pageContents = {};
-readFiles('./src/views', ({ name, contents }) => (pageContents[name] = contents));
+const viewInfoes = helpers.getViewFileInfoes();
 
 const generatePage = ({
   path = '',
@@ -75,8 +69,7 @@ const generatePage = ({
     templateParameters: templateParametersGenerator,
   });
 
-const locales = [];
-readLocales('./src/locales');
+const locales = helpers.getLocaleResources();
 
 // const routesConfigs = routes.map(route =>
 //   generatePage({
@@ -102,7 +95,7 @@ Object.keys(locales).forEach(localeKey => {
         path:
           (appConfig.defaultLanguage === localeKey ? '' : localeKey + '/') +
           (route.name === 'index' ? '' : route.name),
-        htmlContents: ejs.render(pageContents[route.name], {
+        htmlContents: ejs.render(viewInfoes[route.name].contents, {
           locales: locales[localeKey],
           app: currentAppConfig,
         }),
