@@ -20,6 +20,10 @@
           <link href="<%= htmlWebpackPlugin.files.css[key] %>" rel="stylesheet" />
         <%} %>
     <%} %>
+     <!--[if lt IE 9]>
+      <script src="<%= app.path.js %>/html5shiv.js"></script>
+      <script src="<%= app.path.js %>/respond.min.js"></script>
+    <![endif]-->
   </head>
   <body>
     <header>

@@ -18,18 +18,18 @@ const helpers = {
   },
   getViewFileInfoes: () => {
     const viewFiles = {};
-    const viewPath = this.getFullPath(config.path.view);
+    const viewPath = helpers.getFullPath(config.path.view);
     fs.readdirSync(viewPath).forEach(filename => {
+      const filepath = path.resolve(viewPath, filename);
       const stat = fs.statSync(filepath);
       const isFile = stat.isFile();
-      if(isFile) continue;
+      if (isFile) {
+        const name = path.parse(filename).name;
+        const ext = path.parse(filename).ext;
+        const contents = fs.readFileSync(filepath, 'utf8');
 
-      const filepath = path.resolve(dir, filename);
-      const name = path.parse(filename).name;
-      const ext = path.parse(filename).ext;
-      const contents = fs.readFileSync(filepath, 'utf8');
-
-      viewFiles[name] = { filepath, ext, stat, contents };
+        viewFiles[name] = { filepath, ext, stat, contents };
+      }
     });
     return viewFiles;
   },
@@ -39,16 +39,17 @@ const helpers = {
     title,
     htmlContents,
     currentConfig,
-  } = {}) => new HtmlWebpackPlugin({
-    filename: `${path && path + '/'}index.html`,
-    template: '!!ejs-webpack-loader!' + template,
-    title,
-    htmlContents,
-    appConfig: currentConfig,
-    inject: false,
-    hash: true,
-    templateParameters: templateParametersGenerator,
-  })
+  } = {}) =>
+    new HtmlWebpackPlugin({
+      filename: `${path && path + '/'}index.html`,
+      template: '!!ejs-webpack-loader!' + template,
+      title,
+      htmlContents,
+      appConfig: currentConfig,
+      inject: false,
+      hash: true,
+      templateParameters: templateParametersGenerator,
+    }),
 };
 
 module.exports = helpers;

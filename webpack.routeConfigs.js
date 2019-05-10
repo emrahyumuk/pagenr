@@ -13,19 +13,6 @@ const helpers = require('./webpack.helpers');
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
 
-function readFiles(dir, processFiles) {
-  fs.readdirSync(dir).forEach(filename => {
-    const filepath = path.resolve(dir, filename);
-    const name = path.parse(filename).name;
-    const ext = path.parse(filename).ext;
-    const stat = fs.statSync(filepath);
-    const isFile = stat.isFile();
-    const contents = fs.readFileSync(filepath, 'utf8');
-
-    if (isFile) processFiles({ filepath, name, ext, stat, contents });
-  });
-}
-
 function getConfig(locale) {
   let modifiedConfig = JSON.parse(JSON.stringify(appConfig));
   if (modifiedConfig.defaultLanguage && modifiedConfig.defaultLanguage !== locale) {
@@ -124,6 +111,14 @@ routesConfigs.push(
     {
       from: './src/robots.txt',
       to: './',
+    },
+    {
+      from: './node_modules/html5shiv/dist/html5shiv.min.js',
+      to: './' + appConfig.path.js,
+    },
+    {
+      from: './node_modules/respond.js/dest/respond.min.js',
+      to: './' + appConfig.path.js,
     },
   ])
 );
