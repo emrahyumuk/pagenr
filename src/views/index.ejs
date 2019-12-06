@@ -1,4 +1,9 @@
- <div class="home">
-    <img alt="pagenr logo" src="<%= app.path.img %>/logo.png">
-    <h1><%= locales.home %></h1>
-  </div>
+<div class="home">
+  <img alt="pagenr logo" src="<%= app.path.img %>/logo.png">
+  <h1><%= locales.home %></h1>
+  <ul>
+    <% data.employees.forEach(function(employee) { %>
+    <li><%= employee.id %> - <%= employee.employee_name %></li>
+    <% }); %>
+  </ul>
+</div>

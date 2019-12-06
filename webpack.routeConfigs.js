@@ -85,6 +85,7 @@ Object.keys(locales).forEach(localeKey => {
         htmlContents: ejs.render(viewInfoes[route.name].contents, {
           locales: locales[localeKey],
           app: currentAppConfig,
+          data: route.fetch ? require(`./.temp/${route.name}.json`) : null,
         }),
         currentConfig: currentAppConfig,
       })
