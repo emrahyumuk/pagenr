@@ -35,14 +35,14 @@ const helpers = {
   },
   getHtmlWebPluginConfigs: ({
     path = '',
-    template = helpers.getFullPath('layout.ejs'),
+    template = helpers.getFullPath('layout.hbs'),
     title,
     htmlContents,
     currentConfig,
   } = {}) =>
     new HtmlWebpackPlugin({
       filename: `${path && path + '/'}index.html`,
-      template: '!!ejs-webpack-loader!' + template,
+      template: template,
       title,
       htmlContents,
       appConfig: currentConfig,

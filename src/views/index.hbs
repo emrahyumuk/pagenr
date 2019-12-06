@@ -1,0 +1,9 @@
+<div class="home">
+  <img alt="pagenr logo" src="{{ app.path.img }}/logo.png">
+  <h1>{{ locales.home }}</h1>
+  <ul>
+    {{#each data.employees }}
+    <li>{{ id }} - {{ employee_name }}</li>
+    {{/each}}
+  </ul>
+</div>

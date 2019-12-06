@@ -72,17 +72,7 @@ module.exports = (env, options) => {
             'sass-loader',
           ],
         },
-        {
-          test: /\.ejs$/,
-          use: [
-            {
-              loader: 'ejs-webpack-loader',
-              options: {
-                htmlmin: true,
-              },
-            },
-          ],
-        },
+        { test: /\.hbs$/, loader: 'handlebars-loader' },
       ],
     },
   };

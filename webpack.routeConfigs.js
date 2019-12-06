@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-let ejs = require('ejs');
+let handlebars = require('handlebars');
 
 const routes = require('./src/routes');
 const appConfig = require('./src/config');
@@ -40,14 +40,14 @@ const viewInfoes = helpers.getViewFileInfoes();
 
 const generatePage = ({
   path = '',
-  template = './src/layouts/layout.ejs',
+  template = './src/layouts/layout.hbs',
   title,
   htmlContents,
   currentConfig,
 } = {}) =>
   new HtmlWebpackPlugin({
     filename: `${path && path + '/'}index.html`,
-    template: '!!ejs-webpack-loader!' + template,
+    template: template,
     title,
     htmlContents,
     appConfig: currentConfig,
@@ -82,7 +82,7 @@ Object.keys(locales).forEach(localeKey => {
         path:
           (appConfig.defaultLanguage === localeKey ? '' : localeKey + '/') +
           (route.name === 'index' ? '' : route.name),
-        htmlContents: ejs.render(viewInfoes[route.name].contents, {
+        htmlContents: handlebars.compile(viewInfoes[route.name].contents, {
           locales: locales[localeKey],
           app: currentAppConfig,
           data: route.fetch ? require(`./.temp/${route.name}.json`) : null,
