@@ -98,19 +98,19 @@ if (isDevelopment) routesConfigs.push(new HtmlBeautifyPlugin());
 routesConfigs.push(
   new CopyWebpackPlugin([
     {
-      from: './src/assets/img',
+      from: './src/public/img',
       to: '.' + appConfig.path.img,
     },
     {
-      from: './src/assets/js',
+      from: './src/public/js',
       to: '.' + appConfig.path.js,
     },
     {
-      from: './src/assets/css',
+      from: './src/public/css',
       to: '.' + appConfig.path.css,
     },
     {
-      from: './src/robots.txt',
+      from: './src/public/robots.txt',
       to: './',
     },
     {
