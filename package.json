@@ -8,6 +8,9 @@
     "build": "NODE_ENV=production webpack --mode production",
     "build:stats": "webpack --mode production --json > stats.json"
   },
+  "bin": {
+    "pagenr": "cli.js"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -35,6 +38,7 @@
     "prettier": "^1.17.0",
     "respond.js": "^1.4.2",
     "sass-loader": "^7.1.0",
+    "shelljs": "^0.8.3",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.3",
     "webpack": "^4.30.0",
