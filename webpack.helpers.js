@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
-const config = require('./src/config.js');
+const config = require('./app.config.js');
 
 const helpers = {
   getFullPath: pathProp => {
-    return path.join('./', config.path.root, pathProp);
+    return path.join(process.cwd(), config.path.root, pathProp);
   },
   getLocaleResources: () => {
     const localizationPath = helpers.getFullPath(config.path.localization);

@@ -30,7 +30,7 @@ routes.forEach(r => {
       );
     });
     Promise.all(promiseArray).then(() => {
-      const dir = path.join(__dirname, './.temp/');
+      const dir = path.join(process.cwd(), './.temp/');
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
       }

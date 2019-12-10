@@ -14,7 +14,7 @@ module.exports = (env, options) => {
   return {
     entry: './src/index.js',
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(process.cwd(), 'dist'),
       filename: isDevMode ? 'assets/js/[name].js' : 'assets/js/[name].[chunkhash].js',
     },
     optimization: {
@@ -44,7 +44,7 @@ module.exports = (env, options) => {
       // }),
     ],
     devServer: {
-      contentBase: path.join(__dirname, 'dist'),
+      contentBase: path.join(process.cwd(), 'dist'),
       compress: true,
       port: 9000,
       writeToDisk: true,

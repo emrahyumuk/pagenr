@@ -3,7 +3,7 @@ const path = require('path');
 let ejs = require('ejs');
 
 const routes = require('./src/routes');
-const appConfig = require('./src/config');
+const appConfig = require('./app.config');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlBeautifyPlugin = require('html-beautify-webpack-plugin');
