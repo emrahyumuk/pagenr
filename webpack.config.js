@@ -5,16 +5,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
 
 const routeConfigs = require('./webpack.routeConfigs');
 
 module.exports = (env, options) => {
   const isDevMode = options.mode !== 'production';
+  const entry = path.join(process.env.APP_DIR, './src/index.js');
   return {
-    entry: './src/index.js',
+    entry: entry,
     output: {
-      path: path.resolve(process.cwd(), 'dist'),
+      path: path.join(process.env.APP_DIR, 'dist'),
       filename: isDevMode ? 'assets/js/[name].js' : 'assets/js/[name].[chunkhash].js',
     },
     optimization: {
@@ -32,6 +32,9 @@ module.exports = (env, options) => {
       },
       minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
     },
+    stats: {
+      children: false,
+    },
     plugins: [
       new webpack.ProgressPlugin(),
       new CleanWebpackPlugin(),
@@ -39,12 +42,9 @@ module.exports = (env, options) => {
         filename: isDevMode ? 'assets/css/[name].css' : 'assets/css/[name].[contenthash].css',
       }),
       ...routeConfigs,
-      // new CompressionPlugin({
-      //   algorithm: 'gzip',
-      // }),
     ],
     devServer: {
-      contentBase: path.join(process.cwd(), 'dist'),
+      contentBase: path.join(process.env.APP_DIR, 'dist'),
       compress: true,
       port: 9000,
       writeToDisk: true,

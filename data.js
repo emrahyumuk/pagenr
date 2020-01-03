@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const fetch = require('node-fetch');
-const routes = require('./src/routes');
+const routes = require(path.join(process.env.APP_DIR, './src/routes'));
 
 const fetchOptions = {
   headers: { Accept: 'application/json' },
@@ -30,7 +30,7 @@ routes.forEach(r => {
       );
     });
     Promise.all(promiseArray).then(() => {
-      const dir = path.join(process.cwd(), './.temp/');
+      const dir = './.temp/';
       if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
       }

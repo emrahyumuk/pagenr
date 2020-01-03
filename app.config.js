@@ -1,6 +1,6 @@
 const path = require('path');
 
-const appConfig = require(path.join(process.cwd(), 'pagenr.config.js'));
+const appConfig = require(path.join(process.env.APP_DIR, 'pagenr.config.js'));
 
 let config = {
   defaultLanguage: 'tr',

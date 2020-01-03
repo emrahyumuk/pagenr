@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 let ejs = require('ejs');
 
-const routes = require('./src/routes');
+const routes = require(path.join(process.env.APP_DIR,'./src/routes'));
 const appConfig = require('./app.config');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -37,10 +37,10 @@ function templateParametersGenerator(compilation, assets, options) {
 }
 
 const viewInfoes = helpers.getViewFileInfoes();
-
+const templatePath = path.join(process.env.APP_DIR,'./src/layouts/layout.ejs');
 const generatePage = ({
   path = '',
-  template = './src/layouts/layout.ejs',
+  template = templatePath,
   title,
   htmlContents,
   currentConfig,
@@ -98,27 +98,27 @@ if (isDevelopment) routesConfigs.push(new HtmlBeautifyPlugin());
 routesConfigs.push(
   new CopyWebpackPlugin([
     {
-      from: './src/public/img',
+      from: path.join(process.env.APP_DIR,'./src/public/img'),
       to: '.' + appConfig.path.img,
     },
     {
-      from: './src/public/js',
+      from: path.join(process.env.APP_DIR,'./src/public/js'),
       to: '.' + appConfig.path.js,
     },
     {
-      from: './src/public/css',
+      from: path.join(process.env.APP_DIR,'./src/public/css'),
       to: '.' + appConfig.path.css,
     },
     {
-      from: './src/public/robots.txt',
+      from: path.join(process.env.APP_DIR,'./src/public/robots.txt'),
       to: './',
     },
     {
-      from: './node_modules/html5shiv/dist/html5shiv.min.js',
+      from: path.join(process.env.APP_DIR,'./node_modules/html5shiv/dist/html5shiv.min.js'),
       to: './' + appConfig.path.js,
     },
     {
-      from: './node_modules/respond.js/dest/respond.min.js',
+      from: path.join(process.env.APP_DIR,'./node_modules/respond.js/dest/respond.min.js'),
       to: './' + appConfig.path.js,
     },
   ])

@@ -5,7 +5,7 @@ const config = require('./app.config.js');
 
 const helpers = {
   getFullPath: pathProp => {
-    return path.join(process.cwd(), config.path.root, pathProp);
+    return path.join(process.env.APP_DIR, config.path.root, pathProp);
   },
   getLocaleResources: () => {
     const localizationPath = helpers.getFullPath(config.path.localization);

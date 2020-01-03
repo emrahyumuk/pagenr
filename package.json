@@ -1,7 +1,7 @@
 {
-  "name": "pagenr",
-  "version": "0.0.1",
-  "description": "webpack static html page generator",
+  "name": "mra-npm-cli-test",
+  "version": "0.0.9",
+  "description": "",
   "scripts": {
     "dev": "NODE_ENV=development node data.js && webpack-dev-server --mode development --hot",
     "build:dev": "NODE_ENV=development webpack --mode development",
@@ -13,7 +13,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.4.3",
@@ -22,7 +22,7 @@
     "babel-loader": "^8.0.5",
     "babel-preset-env": "^1.7.0",
     "clean-webpack-plugin": "^2.0.1",
-    "compression-webpack-plugin": "^2.0.0",
+    "commander": "^4.0.1",
     "copy-webpack-plugin": "^5.0.2",
     "css-loader": "^2.1.1",
     "ejs": "^2.6.1",

@@ -2,5 +2,15 @@
   "name": "03-fetch-data",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT"
+  "scripts": {
+    "serve": "pagenr serve",
+    "build": "pagenr build --mode production",
+    "build:dev": "NODE_ENV=development webpack --mode development",
+    "build:stats": "webpack --mode production --json > stats.json"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "mra-npm-cli-test": "^0.0.9"
+  },
+  "devDependencies": {}
 }
