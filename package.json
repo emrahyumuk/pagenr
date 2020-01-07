@@ -1,6 +1,6 @@
 {
   "name": "pagenr",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "scripts": {
     "dev": "NODE_ENV=development node data.js && webpack-dev-server --mode development --hot",
