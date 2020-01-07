@@ -10,7 +10,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "mra-npm-cli-test": "^0.0.9"
+    "pagenr": "^0.1.0"
   },
   "devDependencies": {}
 }

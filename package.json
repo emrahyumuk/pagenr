@@ -1,6 +1,6 @@
 {
-  "name": "mra-npm-cli-test",
-  "version": "0.0.9",
+  "name": "pagenr",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
     "dev": "NODE_ENV=development node data.js && webpack-dev-server --mode development --hot",
@@ -11,8 +11,12 @@
   "bin": {
     "pagenr": "cli.js"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Emrah Yumuk",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/emrahyumuk/pagenr.git"
+  },
   "dependencies": {
     "@babel/core": "^7.4.3",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
